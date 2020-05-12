@@ -3,18 +3,51 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<app-new-cmp [inputData]="value"></app-new-cmp>
+<div> Months :
+  <select (change)="changeFunction($event)">
+    <option *ngFor="let i of months">{{i}}</option>
+  </select>
+</div>
+<br />
+<div>
+  <span *ngIf="isavailable; else condition1">Condition is valid.</span>
+  <ng-template #condition1>Condition is invalid</ng-template>
+</div>
+<br />
+<button (click)="clickFunction($event)">
+  Click Me
+</button>
+<hr />
+<!-- using custom directive-->
+<div appCustomDir [inputDate]="value"></div>
+<hr />
+<!-- using pipe-->
+<div>
+  <div>Uppercase Pipe: {{title | uppercase}}</div>
+  <div>Lowercase Pipe: {{title | lowercase}}</div>
+  <div>Currency Pipe: USD: {{6589.23 | currency:"USD"}} INR: {{6589.23 | currency:"INR"}}</div>
+  <div>Date pipe: {{todaydate | date:'d/M/y'}} (format: d/M/y) / {{todaydate | date:'shortTime'}} (format: shortTime)
+  </div>
+  <div>Decimal Pipe (111111454.733 | number: '5.2-4'): {{ 11111454.733 | number: '5.2-4' }}
+    // format: minIntegerDigits.minFractionDigits-maxFractionDigits</div>
+  <div>Without Json Pipe: {{ jsonval }}</div>
+  <div>With Json Pipe: {{ jsonval | json }}</div>
+  <div>Percent Pipe: {{00.54565 | percent}}</div>
+  <div>Slice Pipe (months | slice:2:6): {{months | slice:2:6}}
+    // here 2 and 6 refers to the start and the end index</div>
+</div>
+<!-- using custom pipe-->
+<div>Displaying trimed title via custom pipe: <b>{{title | customPipe: 10}}</b></div>
+<hr />
+<app-new-cmp2></app-new-cmp2>
+<hr />
+<!-- routing -->
+<nav>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/contactus">Contact Us </a>
+  <a routerLink="/settings">Setting </a>
+</nav>
+<router-outlet></router-outlet>
+<hr />
