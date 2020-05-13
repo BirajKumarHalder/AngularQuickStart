@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,10 @@ export class CustomServiceService {
     console.log("setting username: " + userName)
     this.userName = userName;
   }
+  constructor(private http: HttpClient) { }
+  getData() {
+    return this.http.get("http://dummy.restapiexample.com/api/v1/employees");
+  }
+
 
 }
